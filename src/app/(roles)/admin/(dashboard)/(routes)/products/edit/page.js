@@ -83,17 +83,16 @@ const ProductEdit = () => {
         description: "",
     });
 
-    const fetchData = async () => {
-        const res = await fetch(`/api/products/${id}`, {
-            method: "GET",
-        });
-        const resProduct = await res.json();
-        setProduct(resProduct.data);
-    }
-
     useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`/api/products/${id}`, {
+                method: "GET",
+            });
+            const resProduct = await res.json();
+            setProduct(resProduct.data);
+        }
         fetchData();
-    }, [])
+    }, [id])
 
     const handlecolorsCheckboxChange = (event) => {
         const { value, checked } = event.target;
