@@ -1,6 +1,8 @@
 import Featured from "@/components/(landingpage)/Featured";
 import Hero from "@/components/(landingpage)/Hero";
 import Sale from "@/components/(landingpage)/Sale";
+import Products from "@/components/(landingpage)/Products";
+
 
 export default function Home() {
   return (
@@ -8,6 +10,7 @@ export default function Home() {
       <Hero />
       <Sale />
       <Featured />
+      <Products />
     </div>
   )
 }

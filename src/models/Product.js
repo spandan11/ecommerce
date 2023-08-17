@@ -16,6 +16,10 @@ const ProductSchema = mongoose.Schema({
     discount: {
         type: Number,
     },
+    image: {
+        type: String,
+        required: [true, "Please provide image"],
+    },
     colors: {
         type: Array,
         default: [],

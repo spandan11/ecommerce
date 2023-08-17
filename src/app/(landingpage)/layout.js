@@ -1,5 +1,6 @@
 import Navbar from '@/components/(landingpage)/Navbar'
 import Footer from '@/components/(landingpage)/Footer'
+import { CartProvider } from '@/providers/CartProvider'
 
 export const metadata = {
     title: 'Ecommerce Authentication Landing Page',
@@ -10,9 +11,11 @@ export default function LandingPageLayout({ children }) {
     return (
         <html lang="en">
             <body>
-                <Navbar />
-                {children}
-                <Footer />
+                <CartProvider>
+                    <Navbar />
+                    {children}
+                    <Footer />
+                </CartProvider>
             </body>
         </html>
     )
