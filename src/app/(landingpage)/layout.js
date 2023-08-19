@@ -1,6 +1,7 @@
 import Navbar from '@/components/(landingpage)/Navbar'
 import Footer from '@/components/(landingpage)/Footer'
 import { CartProvider } from '@/providers/CartProvider'
+import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
     title: 'Ecommerce Authentication Landing Page',
@@ -15,6 +16,9 @@ export default function LandingPageLayout({ children }) {
                     <Navbar />
                     {children}
                     <Footer />
+                    <Toaster
+                        position="bottom-right"
+                        reverseOrder={false} />
                 </CartProvider>
             </body>
         </html>

@@ -80,6 +80,7 @@ const ProductEdit = () => {
         colors: [],
         sizes: [],
         quantity: "",
+        image: "",
         description: "",
     });
 
@@ -242,6 +243,15 @@ const ProductEdit = () => {
                                 name="product description"
                                 placeholder="Product Description" />
                         </div>
+                        <input
+                            type="text"
+                            className="block border border-grey-light p-3 rounded mb-4 w-full"
+                            value={product.image}
+                            onChange={(e) => {
+                                setProduct({ ...product, image: e.target.value })
+                            }}
+                            name="product image"
+                            placeholder="Product image URL" />
 
                         <button
                             type="submit"

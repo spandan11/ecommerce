@@ -9,8 +9,11 @@ const Products = () => {
         const res = await fetch("/api/products/", {
             method: "GET",
         });
+
         const resdata = await res.json();
-        setProductData(resdata.data);
+        const slicedData = resdata.data.reverse().slice(4);
+        const usefulData = slicedData.reverse()
+        setProductData(usefulData);
     }
     useEffect(() => {
         fetchProducts();

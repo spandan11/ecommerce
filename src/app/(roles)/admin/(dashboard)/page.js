@@ -3,6 +3,7 @@ import React from 'react'
 import { useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
+import PerformanceChart from '@/components/(admin)/PerformanceChart'
 
 const boxes = [
     {
@@ -51,8 +52,8 @@ const Admin = () => {
                             </Link>
                         ))}
                     </div>
-                    <div className='flex p-5 bg-white'>
-                        Performance Chart
+                    <div className='flex bg-white'>
+                        <PerformanceChart />
                     </div>
                 </div>
             </div>

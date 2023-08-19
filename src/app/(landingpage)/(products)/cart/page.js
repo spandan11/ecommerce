@@ -3,6 +3,8 @@
 import React, { useContext } from 'react'
 import CartContext from '@/providers/CartProvider';
 import Link from 'next/link';
+import Image from 'next/image';
+import { toast } from 'react-hot-toast';
 
 const Cart = () => {
     const { cart, addItemToCart, deleteItemFromCart } = useContext(CartContext);
@@ -17,6 +19,11 @@ const Cart = () => {
         const item = { ...cartItem, quantity: newQuantity }
         if (newQuantity <= 0) return;
         addItemToCart(item)
+    }
+
+    const removeItem = (id) => {
+        deleteItemFromCart(id)
+        toast.success("Item removed")
     }
     return (
         <>
@@ -41,7 +48,7 @@ const Cart = () => {
                                                     <figure className="flex leading-5">
                                                         <div>
                                                             <div className="block w-16 h-16 rounded border border-gray-200 overflow-hidden">
-                                                                {/* <img src={cartItem.image} alt={cartItem.name} /> */}
+                                                                <Image src={cartItem.image} alt={cartItem.productname} width={50} height={50} />
                                                             </div>
                                                         </div>
                                                         <figcaption className="ml-3">
@@ -52,7 +59,7 @@ const Cart = () => {
                                                             </p>
                                                             <p className="mt-1 text-gray-400">
                                                                 {" "}
-                                                                {/* Seller: {cartItem.seller} */}
+                                                                {/* Category: {cartItem.category} */}
                                                             </p>
                                                         </figcaption>
                                                     </figure>
@@ -102,7 +109,7 @@ const Cart = () => {
                                                         <a
                                                             className="px-4 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer"
                                                             onClick={() =>
-                                                                deleteItemFromCart(cartItem?.id)
+                                                                removeItem(cartItem?.id)
                                                             }
                                                         >
                                                             Remove
