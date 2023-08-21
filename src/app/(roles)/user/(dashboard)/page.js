@@ -13,7 +13,11 @@ const User = () => {
     }
     if (session?.status === "authenticated" && session?.data.user.role === "user") {
         return (
-            <div className='text-center'>You are an user</div>
+            < >
+                <h1 className='text-center pt-5 text-xl'>
+                    Hi! &nbsp;{session?.data.user.email}
+                </h1>
+            </>
         )
     }
 }
