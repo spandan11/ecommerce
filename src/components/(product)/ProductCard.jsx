@@ -14,7 +14,7 @@ const ProductCard = ({ product }) => {
         addItemToCart({
             id: _id,
             productname: productname,
-            price: price,
+            price: discount ? price - discount : price,
             stock: quantity,
             image: image,
         })

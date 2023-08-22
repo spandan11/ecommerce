@@ -1,13 +1,17 @@
 "use client"
 
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import CartContext from '@/providers/CartProvider';
+import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const Cart = () => {
     const { cart, addItemToCart, deleteItemFromCart } = useContext(CartContext);
+    const session = useSession();
+    const router = useRouter();
     const increaseQuantity = (cartItem) => {
         const newQuantity = cartItem?.quantity + 1
         const item = { ...cartItem, quantity: newQuantity }
@@ -21,9 +25,55 @@ const Cart = () => {
         addItemToCart(item)
     }
 
+    let amountWithoutTax = 0;
+
+    cart?.cartItems?.forEach(item => {
+        amountWithoutTax += item.price * item.quantity;
+    });
+
+    let taxAmount = 13 / 100 * amountWithoutTax
+    let totalAmount = amountWithoutTax + taxAmount
+
     const removeItem = (id) => {
         deleteItemFromCart(id)
         toast.success("Item removed")
+    }
+
+    const OrderProduct = async () => {
+        if (session.status == "authenticated") {
+            if (session?.data?.user?.role === "user") {
+                const orderData = cart.cartItems.map(item => ({
+                    id: item.id,
+                    productname: item.productname,
+                    price: item.price,
+                    quantity: item.quantity
+                }));
+                const res = await fetch('/api/orders', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: session?.data?.user?.email,
+                        products: orderData,
+                        address: "address",
+                        status: "Pending",
+                        amount: totalAmount,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                const data = await res.json()
+                if (data.status == 200) {
+                    toast.success("Order Placed Successfully")
+                    router?.push("/user/orders")
+                }
+            } else if (session?.data?.user?.role === "admin") {
+                toast.error("You are an admin")
+            } else {
+                toast.error("Something Went Wrong!")
+            }
+        } else {
+            router?.push("/login?callbackUrl=/cart")
+        }
     }
     return (
         <>
@@ -47,15 +97,15 @@ const Cart = () => {
                                                 <div className="w-full lg:w-2/5 xl:w-2/4">
                                                     <figure className="flex leading-5">
                                                         <div>
-                                                            <div className="block w-16 h-16 rounded border border-gray-200 overflow-hidden">
+                                                            <div className="block w-auto h-auto rounded border border-gray-200 overflow-hidden">
                                                                 <Image src={cartItem.image} alt={cartItem.productname} width={50} height={50} />
                                                             </div>
                                                         </div>
                                                         <figcaption className="ml-3">
                                                             <p>
-                                                                <a href="#" className="hover:text-blue-600">
+                                                                <Link href={`/product/${cartItem.id}`} className="hover:text-blue-600">
                                                                     {cartItem.productname}
-                                                                </a>
+                                                                </Link>
                                                             </p>
                                                             <p className="mt-1 text-gray-400">
                                                                 {" "}
@@ -106,14 +156,14 @@ const Cart = () => {
                                                 </div>
                                                 <div className="flex-auto">
                                                     <div className="float-right">
-                                                        <a
+                                                        <button
                                                             className="px-4 py-2 inline-block text-red-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100 cursor-pointer"
                                                             onClick={() =>
                                                                 removeItem(cartItem?.id)
                                                             }
                                                         >
                                                             Remove
-                                                        </a>
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -128,7 +178,7 @@ const Cart = () => {
                                     <ul className="mb-5">
                                         <li className="flex justify-between text-gray-600  mb-1">
                                             <span>Amount before Tax:</span>
-                                            {/* <span>${amountWithoutTax}</span> */}
+                                            <span>${amountWithoutTax.toFixed(2) || ""}</span>
                                         </li>
                                         <li className="flex justify-between text-gray-600  mb-1">
                                             <span>Total Units:</span>
@@ -142,20 +192,20 @@ const Cart = () => {
                                         </li>
                                         <li className="flex justify-between text-gray-600  mb-1">
                                             <span>TAX:</span>
-                                            {/* <span>${taxAmount}</span> */}
+                                            <span>${taxAmount.toFixed(2) || ""}</span>
                                         </li>
                                         <li className="text-lg font-bold border-t flex justify-between mt-3 pt-3">
                                             <span>Total price:</span>
-                                            {/* <span>${totalAmount}</span> */}
+                                            <span>${totalAmount.toFixed(2) || ""}</span>
                                         </li>
                                     </ul>
 
-                                    <a className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 cursor-pointer">
+                                    <button onClick={OrderProduct} className="px-4 py-3 mb-2 inline-block text-lg w-full text-center font-medium text-white bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-700 cursor-pointer">
                                         Continue
-                                    </a>
+                                    </button>
 
                                     <Link
-                                        href="/"
+                                        href={"/"}
                                         className="px-4 py-3 inline-block text-lg w-full text-center font-medium text-indigo-600 bg-white shadow-sm border border-gray-200 rounded-md hover:bg-gray-100"
                                     >
                                         Back to shop
