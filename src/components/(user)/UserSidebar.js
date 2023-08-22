@@ -47,7 +47,7 @@ const Sidebar = () => {
                 <div className='hidden md:flex'>
                     <Link href="/admin" className='flex items-center pl-3 mb-14'>
                         <div className="relative mx-auto">
-                            <span className='text-3xl font-semibold'>eCommerce</span>
+                            <Link href={"/"} className='text-3xl font-semibold'>eCommerce</Link>
                         </div>
                     </Link>
                 </div>

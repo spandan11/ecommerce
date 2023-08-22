@@ -13,6 +13,18 @@ const Orders = () => {
     useEffect(() => {
         fetchOrders();
     }, [])
+
+    let totalSales = 0;
+
+    // Iterate through each sale record
+    for (const order of orderData) {
+        // Iterate through the products in the sale
+        for (const product of order.products) {
+            // Add the quantity of each product to the total sales quantity
+            totalSales += product.quantity;
+        }
+    }
+
     return (
         <>
             <div className="p-5 rounded-md bg-[#F9F9FB] h-full relative overflow-x-auto shadow-md sm:rounded-lg">

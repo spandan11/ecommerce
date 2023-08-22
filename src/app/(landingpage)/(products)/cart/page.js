@@ -65,6 +65,7 @@ const Cart = () => {
                 if (data.status == 200) {
                     toast.success("Order Placed Successfully")
                     router?.push("/user/orders")
+                    localStorage.clear();
                 }
             } else if (session?.data?.user?.role === "admin") {
                 toast.error("You are an admin")
@@ -72,7 +73,7 @@ const Cart = () => {
                 toast.error("Something Went Wrong!")
             }
         } else {
-            router?.push("/login?callbackUrl=/cart")
+            router?.push("/login")
         }
     }
     return (
