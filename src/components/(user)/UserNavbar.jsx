@@ -1,12 +1,11 @@
 "use client"
 
 import React, { useState, useEffect } from 'react'
-import AdminSidebar from '@/components/(admin)/AdminSidebar'
 import Link from 'next/link'
+import UserSidebar from '@/components/(user)/UserSidebar'
 
-const AdminNavbar = () => {
+const UserNavbar = () => {
     const [showSidebar, setshowSidebar] = useState(false);
-
     const [mounted, setMounted] = useState(false)
 
     // useEffect only runs on the client, so now we can safely show the UI
@@ -26,7 +25,7 @@ const AdminNavbar = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </button>
-                <Link href={"/"} className='text-3xl font-semibold text-center'>
+                <Link href={"/"} className='text-2xl font-semibold text-center'>
                     <span className='mx-auto'>eCommerce</span>
                 </Link>
                 <button>
@@ -37,11 +36,11 @@ const AdminNavbar = () => {
             </div>
             {showSidebar && (
                 <div className='relative h-full z-[80] w-72'>
-                    <AdminSidebar />
+                    <UserSidebar />
                 </div>
             )}
         </div>
     )
 }
 
-export default AdminNavbar;
+export default UserNavbar;
