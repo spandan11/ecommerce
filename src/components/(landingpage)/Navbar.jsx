@@ -12,11 +12,11 @@ const Navbar = () => {
     const cartItem = cart?.cartItems;
     return (
         <header className="text-gray-600 body-font md:border-b-2 shadow md:border-gray-300 sticky top-0 z-10 bg-white">
-            <div className="container mx-auto flex flex-wrap px-5 py-3 flex-col md:flex-row items-center justify-around">
+            <div className="container mx-auto flex flex-wrap px-5 py-3 flex-row items-center justify-around">
                 <Link href="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                     <Image className="w-auto h-8" src={"/logo.svg"} width={615} height={120} alt="Logo" />
                 </Link>
-                <form className='m-auto pl-2 w-2/5'>
+                <form className='hidden md:m-auto md:pl-2 md:w-2/5'>
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
