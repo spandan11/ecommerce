@@ -16,7 +16,7 @@ const Navbar = () => {
                 <Link href="/" className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
                     <Image className="w-auto h-8" src={"/logo.svg"} width={615} height={120} alt="Logo" />
                 </Link>
-                <form className='hidden md:m-auto md:pl-2 md:w-2/5'>
+                <form className='hidden md:block md:m-auto md:pl-2 md:w-2/5'>
                     <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div className="relative">
                         <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
