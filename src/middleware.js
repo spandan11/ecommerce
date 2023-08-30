@@ -12,6 +12,9 @@ export default withAuth(
         if (path.startsWith('/user') && token && token?.role !== "user") {
             return NextResponse.rewrite(new URL('/denied', req.url))
         }
+        if (path.startsWith("/api")) {
+            return NextResponse.rewrite(new URL('/denied', req.url))
+        }
     },
     {
         callbacks: {
@@ -26,5 +29,6 @@ export const config = {
         '/admin/:path*',
         '/seller/:path*',
         '/user/:path*',
+        '/api/:path*',
     ]
 }
