@@ -12,7 +12,7 @@ export default withAuth(
         if (path.startsWith('/user') && token && token?.role !== "user") {
             return NextResponse.rewrite(new URL('/denied', req.url))
         }
-        if (path.startsWith("/api")) {
+        if (path.startsWith("/api") && !token) {
             return NextResponse.rewrite(new URL('/denied', req.url))
         }
     },
