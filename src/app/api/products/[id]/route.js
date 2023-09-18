@@ -37,22 +37,3 @@ export async function PUT(req, { params }) {
         })
     }
 }
-
-// export async function DELETE(req, { params }) {
-//     const { id } = params;
-//     console.log(id)
-//     // const data = await req.json();
-//     // try {
-//     //     await connectMongo();
-//     //     await Product.findByIdAndUpdate(id, data);
-//     //     return NextResponse.json({
-//     //         status: 200,
-//     //         message: "Product Updated Successfuly",
-//     //     })
-//     // } catch (error) {
-//     //     return NextResponse.json({
-//     //         status: 500,
-//     //         message: error.message,
-//     //     })
-//     // }
-// }

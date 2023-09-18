@@ -19,6 +19,7 @@ const Products = () => {
     }, [productsData])
 
     const deleteProduct = async (productId) => {
+
         const res = await fetch(`/api/products?id=${productId}`, {
             method: "DELETE",
         });
