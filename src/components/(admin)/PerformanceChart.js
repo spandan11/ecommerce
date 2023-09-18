@@ -39,7 +39,7 @@ const dataFormatter = (number) => {
 };
 
 const PerformanceChart = () => (
-    <Card>
+    <Card className='ring-0'>
         <Title className='text-2xl'>Revenue Over Time (USD)</Title>
         <AreaChart
             className="h-72 mt-4 p-15"

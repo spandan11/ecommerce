@@ -49,13 +49,13 @@ const Admin = () => {
                 <div className='p-5 bg-[#F9F9FB] h-full space-y-4 rounded-md'>
                     <div className='flex space-x-4'>
                         {boxes.map((box, index) => (
-                            <Link href={box.href} key={index} className="bg-white flex text-xl h-full w-full gap-5 overflow-hidden p-5 shadow-md shadow-zinc-500/50">
+                            <Link href={box.href} key={index} className="bg-white rounded-md flex text-xl h-full w-full gap-5 overflow-hidden p-5 ">
                                 <div className='flex flex-col h-full w-full'>{box.name} <span className='font-semibold'>{box.count}</span></div>
                                 <div className='flex justify-end w-full h-full'>{box.icon}</div>
                             </Link>
                         ))}
                     </div>
-                    <div className='flex bg-white'>
+                    <div className='flex bg-white rounded-md'>
                         <PerformanceChart />
                     </div>
                 </div>
