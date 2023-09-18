@@ -177,10 +177,11 @@ const ProductEdit = () => {
                                 }}
                                 className=" p-0 bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option defaultValue={null}>Choose a Category</option>
-                                <option value="smartphone">Smartphone</option>
-                                <option value="laptop">Laptop</option>
-                                <option value="desktop">Desktop</option>
-                                <option value="accessory">Accesories</option>
+                                <option value="polo">Polo T-Shirt</option>
+                                <option value="half-sleeves">Half Sleeves T-Shirt</option>
+                                <option value="hooded">Hooded T-shirt</option>
+                                <option value="striped">Striped T-Shirt</option>
+                                <option value="solid">Solid T-shirt</option>
                             </select>
 
                             <input

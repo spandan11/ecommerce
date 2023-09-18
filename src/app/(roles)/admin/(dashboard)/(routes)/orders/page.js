@@ -38,6 +38,9 @@ const Orders = () => {
                                 Address
                             </th>
                             <th scope="col" className="px-6 py-3">
+                                Email
+                            </th>
+                            <th scope="col" className="px-6 py-3">
                                 Status
                             </th>
                         </tr>
@@ -52,6 +55,9 @@ const Orders = () => {
                                         </th>
                                         <td className="px-6 py-4">
                                             {order.address}
+                                        </td>
+                                        <td className="px-6 py-4">
+                                            {order.email}
                                         </td>
                                         <td className="px-6 py-4">
                                             {order.status}

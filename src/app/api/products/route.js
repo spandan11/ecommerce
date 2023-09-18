@@ -37,3 +37,23 @@ export async function POST(req) {
         })
     }
 }
+
+export async function DELETE(req) {
+    const searchParams = req.nextUrl.searchParams;
+    const id = searchParams.get('id');
+    // const searchParams = new URL(req.url).searchParams;
+    // const id = searchParams.get('id');
+    try {
+        await connectMongo();
+        await Product.findByIdAndDelete(id);
+        return NextResponse.json({
+            status: 200,
+            message: "Product Deleted Successfuly",
+        })
+    } catch (error) {
+        return NextResponse.json({
+            status: 500,
+            message: error.message,
+        })
+    }
+}

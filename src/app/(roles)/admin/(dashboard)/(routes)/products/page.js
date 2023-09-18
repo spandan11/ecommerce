@@ -17,6 +17,16 @@ const Products = () => {
     useEffect(() => {
         fetchProducts();
     }, [productsData])
+
+    const deleteProduct = async (productId) => {
+        const res = await fetch(`/api/products?id=${productId}`, {
+            method: "DELETE",
+        });
+        const resMessage = await res.json();
+        if (resMessage.status == 200) {
+            toast.success("Product Deleted");
+        }
+    }
     return (
         <div className='p-5 space-y-4'>
             <div className='flex justify-between'>
@@ -78,6 +88,9 @@ const Products = () => {
                                     </td>
                                     <th scope="col" className="px-6 py-3">
                                         <Link href={`/admin/products/edit?id=${product._id}`}>Edit</Link>
+                                    </th>
+                                    <th scope="col" className="px-6 py-3 text-red-500">
+                                        <button onClick={() => deleteProduct(product._id)}>Delete</button>
                                     </th>
                                 </tr>
                             </tbody>
@@ -246,10 +259,11 @@ const AddProduct = ({ setshowForm }) => {
                     }}
                     className=" p-0 bg-gray-50 border border-gray-300 text-gray-900 rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option selected>Choose a Category</option>
-                    <option value="smartphone">Smartphone</option>
-                    <option value="laptop">Laptop</option>
-                    <option value="desktop">Desktop</option>
-                    <option value="accessory">Accesories</option>
+                    <option value="polo">Polo T-Shirt</option>
+                    <option value="half-sleeves">Half Sleeves T-Shirt</option>
+                    <option value="hooded">Hooded T-shirt</option>
+                    <option value="striped">Striped T-Shirt</option>
+                    <option value="solid">Solid T-shirt</option>
                 </select>
 
                 <input
