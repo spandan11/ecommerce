@@ -1,7 +1,9 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Landing Page
 ![landing-page](https://github.com/spandan11/ecommerce/assets/91818968/13c0d4f2-a97f-45be-96c1-706ef7e33cb1)
 
+## Admin Dashboard
 ![admin-dashboard](https://github.com/spandan11/ecommerce/assets/91818968/747aa498-ba64-4ffc-ac77-d4842537176c)
 
 
