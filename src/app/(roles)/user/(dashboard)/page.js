@@ -15,7 +15,7 @@ const User = () => {
         return (
             < >
                 <h1 className='text-center pt-5 text-xl'>
-                    Hi! &nbsp;{session?.data.user.email}
+                    Welcome back, So good to see you again!
                 </h1>
             </>
         )
