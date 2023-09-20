@@ -4,8 +4,8 @@ import { CartProvider } from '@/providers/CartProvider'
 import { Toaster } from 'react-hot-toast'
 
 export const metadata = {
-    title: 'Ecommerce Authentication Landing Page',
-    description: 'This is a simple role based authentication system',
+    title: 'eCommerce: Your Ultimate Fashion Destination',
+    description: 'Explore fashion, elevate your style. Shop the latest trends, top brands, and exclusive deals at ShopStyle.',
 }
 
 export default function LandingPageLayout({ children }) {
